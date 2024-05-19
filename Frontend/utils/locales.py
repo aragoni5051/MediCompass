@@ -9,3 +9,6 @@ def init_i18n() -> None:
     i18n.set('locale', 'en-US')
     i18n.set('skip_locale_root_data', True)
     i18n.set('use_locale_dirs', True)
+
+
+# hello 

@@ -39,7 +39,7 @@ async def call_MediCompass(model: InputModel) -> OutputModel:
 
                 # About Sickness
                 * Symptoms: {model.symptoms}
-                * Ohotos on sickness: {model.photo_url}
+                * Photos on sickness: {model.photo_url}
             ''',
         }),
     )

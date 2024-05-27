@@ -1,4 +1,4 @@
-from models.interview_simulator import InputModel, OutputModel
+from models.MediCompass_management import InputModel, OutputModel
 from utils.page import PageModel
 
 

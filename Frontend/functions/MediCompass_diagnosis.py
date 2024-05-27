@@ -1,4 +1,4 @@
-from models.acrostic_generator import InputModel, OutputModel
+from models.MediCompass_diagnosis import InputModel, OutputModel
 from utils.page import PageModel
 
 

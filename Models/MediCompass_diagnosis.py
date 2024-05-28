@@ -1,7 +1,7 @@
 from typing import Literal, List, Optional, Set
 from datetime import date
 from pydantic import BaseModel, Field, FilePath
-from streamlit_pydantic.types import FileContent
+#from streamlit_pydantic.types import FileContent
 
 
 class Symptom(BaseModel):
@@ -45,12 +45,6 @@ class InputModel(BaseModel):
         st_kwargs_type=["png", "jpg"],
     )
     '''
-    llm_type: Literal['chatgpt', 'huggingface'] = Field(
-        alias='Large Language Model Type',
-        description='사용할 LLM 종류',
-        default='chatgpt',
-    )
-
 
 class OutputModel(BaseModel):
     disease_name: str = Field(

@@ -12,10 +12,7 @@ app = FastAPI(
 )
 
 # Register all available routers
-app.include_router(routers.functions.MediCompass.router)
-app.include_router(routers.functions.acrostic_generator.router)
-app.include_router(routers.functions.anime_characterize.router)
-app.include_router(routers.functions.interview_simulator.router)
-app.include_router(routers.functions.kospi_analyzer.router)
+app.include_router(routers.functions.MediCompass_diagnosis.router)
+app.include_router(routers.functions.MediCompass_management.router)
 app.include_router(routers.health.router)
 app.include_router(routers.home.router)

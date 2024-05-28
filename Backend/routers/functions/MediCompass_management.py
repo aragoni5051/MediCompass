@@ -4,7 +4,7 @@ from fastapi import APIRouter
 
 from llm.chat import build
 from llm.store import LLMStore
-from models.MediCompass import InputModel, OutputModel
+from models.MediCompass_management import InputModel, OutputModel
 
 # Configure API router
 router = APIRouter(
@@ -22,7 +22,7 @@ store = LLMStore()
 ###############################################
 
 @router.post(f'/func/{NAME}')
-async def call_MediCompass(model: InputModel) -> OutputModel:
+async def call_MediCompass_management(model: InputModel) -> OutputModel:
     # Create a LLM chain
     chain = build(
         name=NAME,
@@ -32,14 +32,7 @@ async def call_MediCompass(model: InputModel) -> OutputModel:
     return OutputModel(
         output=chain.invoke({
             'input_context': f'''
-                # About patient
-                * Age: {model.age}
-                * Gender: {model.gender}
-                * Location: {model.location}
-
-                # About Sickness
-                * Symptoms: {model.symptoms}
-                * Photos on sickness: {model.photo_url}
+                # About patient: {model.management}
             ''',
         }),
     )

@@ -1,8 +1,16 @@
+import os
 from typing import Literal, List, Optional, Set
 from datetime import date
 from pydantic import BaseModel, Field, FilePath
 #from streamlit_pydantic.types import FileContent
 
+def load_path(file_path):
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            text = file.read()
+    else:
+        raise FileNotFoundError(f"{file_path} 파일을 찾을 수 없습니다.")
+    return text
 
 class Symptom(BaseModel):
     general_symptoms: Set[Literal["두통", "발열", "기침", "인후통", "피로", "근육통", "구토", "설사", "복통", "호흡 곤란", "콧물", "코막힘", "미각 상실", "후각 상실", "발진"]] = Field(
@@ -11,19 +19,29 @@ class Symptom(BaseModel):
     symptoms: str = Field(
         description='증상을 서술해주세요.',
         min_length=1,
+        default="아파요 ㅠㅠ"
     )
-    symptom_date: date = Field(
-        description='증상이 발생한 날짜를 입력해주세요.',
+    symptom_date: int = Field(
+        description='증상이 며칠 전에 발생했는지 입력해주세요.',
+        default=3
     )
     general_underlying_disease: Set[Literal["고혈압", "심부전", "당뇨병", "만성 호흡기 질환", "만성 신장 질환", "치매"]] = Field(
         description="기저질환을 선택해 주세요.",
     )
     underlying_disease: str = Field(
         description='기저질환을 서술해주세요.',
+        default="없음"
     )
 
 
 class InputModel(BaseModel):
+    base:str = Field(
+        default = load_path("prompts/Base.txt")
+    )
+
+    form:str = Field(
+        default=load_path("prompts/form.txt")
+    )
 
     age: int = Field(
         alias='Age',
@@ -45,9 +63,15 @@ class InputModel(BaseModel):
         st_kwargs_type=["png", "jpg"],
     )
     '''
+    llm_type: Literal['chatgpt', 'huggingface'] = Field(
+        alias='Large Language Model Type',
+        description='사용할 LLM 종류',
+        default='chatgpt',
+    )
+
 
 class OutputModel(BaseModel):
-    disease_name: str = Field(
+    """disease_name: str = Field(
         description='추정한 병명'
     )
     disease_description: str = Field(
@@ -55,7 +79,7 @@ class OutputModel(BaseModel):
     )
     recommended_specialty: str = Field(
         description='추천 병원 전문 분야 (예: 이비인후과, 피부과 등)'
-    )
-    nearby_hospitals: List[str] = Field(
-        description='주변 병원 리스트'
+    )"""
+    imsi: str = Field(
+        discription="임시"
     )

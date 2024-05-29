@@ -29,8 +29,6 @@ async def call_MediCompass_diagnosis(model: InputModel) -> OutputModel:
         llm=store.get(model.llm_type),
     )
 
-    
-
     output=chain.invoke({
             'input_context': f'''
                 # About patient

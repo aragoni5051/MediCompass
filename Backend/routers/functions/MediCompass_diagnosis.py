@@ -29,20 +29,18 @@ async def call_MediCompass_diagnosis(model: InputModel) -> OutputModel:
         llm=store.get(model.llm_type),
     )
 
-    
-
     output=chain.invoke({
             'input_context': f'''
-                # About patient
-                * Age: {model.age}
-                * Gender: {model.gender}
+                # 환자 정보
+                * 나이: {model.age}
+                * 성별: {model.gender}
 
-                # About Symptoms
-                * General Symptoms: {', '.join(model.symptoms.general_symptoms)}
-                * Symptoms: {model.symptoms.symptoms}
-                * When it began: {model.symptoms.symptom_date}
-                * General underlying disease: {model.symptoms.general_underlying_disease}
-                * Informations about the underlying disease: {model.symptoms.underlying_disease}
+                # 병에 대한 정보
+                * 보편적 증상들: {', '.join(model.symptoms.general_symptoms)}
+                * 증상에 대한 설명: {model.symptoms.symptoms}
+                * 나타난 일자: {model.symptoms.symptom_date}일전
+                * 기저 질환: {model.symptoms.general_underlying_disease}
+                * 기저 질환에 대한 정보: {model.symptoms.underlying_disease}
             ''',
         }).split('///')
 

@@ -32,7 +32,7 @@ async def call_MediCompass_management(model: InputModel) -> OutputModel:
     return OutputModel(
         output=chain.invoke({
             'input_context': f'''
-                # About patient: {model.management}
+                #  patient: {model.management}
             ''',
         }),
     )

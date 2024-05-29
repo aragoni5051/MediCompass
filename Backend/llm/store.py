@@ -1,3 +1,4 @@
+import os
 from langchain_core.language_models.llms import LLM
 
 from models.base.llm import (
@@ -8,10 +9,10 @@ from models.base.llm import (
 
 _MODELS: list[BaseLLMModel] = [
     ChatGPTModel(
-        name='chatgpt',
+    name='chatgpt', api_key="sk-proj-V4pjvGotnN3fBb8aDk62T3BlbkFJwZimtgtrWME1AnHb9lcK"
     ),
     HuggingFaceEndpointModel(
-        name='huggingface',
+    name='huggingface', api_key="sk-proj-V4pjvGotnN3fBb8aDk62T3BlbkFJwZimtgtrWME1AnHb9lcK"
     ),
 ]
 

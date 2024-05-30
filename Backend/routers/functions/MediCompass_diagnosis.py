@@ -21,6 +21,14 @@ store = LLMStore()
 #                   Actions                   #
 ###############################################
 
+def load_path(file_path):
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            text = file.read()
+    else:
+        raise FileNotFoundError(f"{file_path} 파일을 찾을 수 없습니다.")
+    return text
+
 @router.post(f'/func/{NAME}')
 async def call_MediCompass_diagnosis(model: InputModel) -> OutputModel:
     # Create a LLM chain
@@ -31,6 +39,10 @@ async def call_MediCompass_diagnosis(model: InputModel) -> OutputModel:
 
     output=chain.invoke({
             'input_context': f'''
+                #학습 정보:
+                참고 자료: {load_path("prompts/Base.txt")}
+                출력 형식: {load_path("prompts/form.txt")}    
+            
                 # 환자 정보
                 * 나이: {model.age}
                 * 성별: {model.gender}

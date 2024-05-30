@@ -9,6 +9,7 @@ class InputModel(BaseModel):
 
     management: str = Field(
         description="사후 관리를 위한 질문을 입력해 주세요.",
+        default="감기에 걸렸습니다",
     )
     llm_type: Literal['chatgpt', 'huggingface'] = Field(
         alias='Large Language Model Type',

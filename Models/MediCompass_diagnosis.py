@@ -51,7 +51,7 @@ class InputModel(BaseModel):
         st_kwargs_type=["png", "jpg"],
     )
     '''
-    llm_type: Literal['chatgpt', 'huggingface'] = Field(
+    llm_type: Literal['chatgpt'] = Field(
         alias='Large Language Model Type',
         description='사용할 LLM 종류',
         default='chatgpt',

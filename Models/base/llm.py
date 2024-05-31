@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
+#from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
 from langchain_core.language_models.llms import LLM
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
@@ -29,7 +29,7 @@ class ChatGPTModel(BaseLLMModel):
         )  # type: ignore
 
 
-class HuggingFaceEndpointModel(BaseLLMModel):
+'''class HuggingFaceEndpointModel(BaseLLMModel):
     endpoint_url: Url = Url('http://huggingface-tgi/')
     temperature: float = 0.8
 
@@ -43,3 +43,4 @@ class HuggingFaceEndpointModel(BaseLLMModel):
             # typical_p=0.95,
             # repetition_penalty=1.03,
         )  # type: ignore
+'''

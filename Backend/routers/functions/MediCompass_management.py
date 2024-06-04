@@ -30,9 +30,9 @@ async def call_MediCompass_management(model: InputModel) -> OutputModel:
     )
 
     return OutputModel(
-        output=chain.invoke({
+        suggestion=chain.invoke({
             'input_context': f'''
-                #  patient: {model.management}
+                #특이사항: {model.management}
             ''',
         }),
     )
